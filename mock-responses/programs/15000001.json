@@ -1,0 +1,17 @@
+{
+  "payload": {
+    "id": 15000001,
+    "title": "테스트 프로그램1",
+    "viewCount": 40204,
+    "likeCount": 22468,
+    "seasons": [
+      {
+        "id": 15000001,
+        "seasonNumber": 1,
+        "episodeCount": 5,
+        "webFreeEpCount": 4,
+        "hasTrailer": true
+      }
+    ]
+  }
+}

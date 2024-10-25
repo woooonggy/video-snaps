@@ -1,0 +1,7 @@
+{
+  "payload": {
+    "seasonId": 15000001,
+    "episodeNumber": 4,
+    "url": "https://wrong.url.com/bunny/stream.mpd"
+  }
+}
