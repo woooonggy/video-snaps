@@ -32,6 +32,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
   programData,
   currentEpisode,
   active,
+  handleAlertOpen,
   handleBottomSheet,
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
@@ -70,6 +71,20 @@ const VideoComp: React.FC<IVideoCompProps> = ({
     if (video) {
       const newTime = time;
       video.currentTime = newTime;
+    }
+  };
+
+  const handleOverlayClick = (buttonAlt: string) => {
+    switch (buttonAlt) {
+      case "list":
+        handleBottomSheet();
+        break;
+      case "share":
+        handleAlertOpen("share");
+        break;
+      default:
+        handleAlertOpen("appDownload");
+        break;
     }
   };
 
@@ -119,6 +134,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
         id="my-player"
         muted
         onClick={showButtons}
+        onDoubleClick={handlePlayPause}
       />
       {!isPlayingRef.current && (
         <button
@@ -151,10 +167,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
         }`}
       >
         {buttonData.map((button, index) => (
-          <button
-            key={index}
-            onClick={button.alt === "list" ? handleBottomSheet : () => {}}
-          >
+          <button key={index} onClick={() => handleOverlayClick(button.alt)}>
             <img src={button.src} alt={button.alt} />
             <span style={{ marginLeft: "5px" }}>
               {button.text(formatLikeCount(programData.likeCount))}

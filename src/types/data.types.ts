@@ -22,4 +22,4 @@ export interface IAlertContent {
   button: React.ReactNode;
 }
 
-export type ALERT_MAP_TYPE = "appDownload" | "error";
+export type ALERT_MAP_TYPE = "appDownload" | "share" | "error";

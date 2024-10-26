@@ -9,6 +9,7 @@ const BottomSheet: React.FC<{
   episodeCount: number;
 }> = ({ isOpen, setIsOpen, programData, episodeCount }) => {
   const handleClose = () => setIsOpen(false);
+  if (!isOpen) return null;
 
   return (
     <div
