@@ -1,4 +1,3 @@
-import React from "react";
 import { IAlertContent } from "../types/data.types";
 
 export const ALERT_CONTENT_MAP: { [key: string]: IAlertContent } = {
@@ -52,3 +51,26 @@ export const ALERT_CONTENT_MAP: { [key: string]: IAlertContent } = {
     button: <>확인</>,
   },
 };
+
+export const buttonData = [
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_like.svg",
+    alt: "like",
+    text: (likeCount: string) => likeCount,
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_keep.svg",
+    alt: "keep",
+    text: () => "찜",
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_list.svg",
+    alt: "list",
+    text: () => "목록",
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_share.svg",
+    alt: "share",
+    text: () => "공유",
+  },
+];
