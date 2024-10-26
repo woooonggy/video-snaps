@@ -18,3 +18,9 @@ export interface IVideoPlayerProps {
   episodeNumber: number;
   active: boolean;
 }
+
+export interface IAlertProps {
+  open: boolean;
+  onClose: () => void;
+  alertContents: d.IAlertContent;
+}

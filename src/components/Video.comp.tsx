@@ -4,6 +4,29 @@ import { IVideoCompProps } from "../types/component.interfaces";
 import SeekBar from "./SeekBar.comp";
 import { formatLikeCount } from "../common/utils";
 
+const buttonData = [
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_like.svg",
+    alt: "like",
+    text: (likeCount: string) => likeCount,
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_keep.svg",
+    alt: "keep",
+    text: () => "찜",
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_list.svg",
+    alt: "list",
+    text: () => "목록",
+  },
+  {
+    src: "https://www.vigloo.com/assets/icons/menu/ic_share.svg",
+    alt: "share",
+    text: () => "공유",
+  },
+];
+
 const VideoComp: React.FC<IVideoCompProps> = ({
   videoRef,
   programData,
@@ -89,7 +112,13 @@ const VideoComp: React.FC<IVideoCompProps> = ({
 
   return (
     <section className={style.section}>
-      <video ref={videoRef} id="my-player" muted onClick={showButtons} />
+      <video
+        ref={videoRef}
+        poster="https://content.vigloo.com/media/kr013/p02/s01/e004/thumbnails/c9167774495c4bdca9c9b951bbfb4d6b_thumbnail.0000000.jpg"
+        id="my-player"
+        muted
+        onClick={showButtons}
+      />
       {!isPlayingRef.current && (
         <button
           ref={buttonRef}
@@ -112,7 +141,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
         </button>
         <span>{programData.title}</span>
         <span>
-          {currentEpisode.current} /{currentEpisode.total}
+          {currentEpisode.current} / {currentEpisode.total}
         </span>
       </div>
       <div
@@ -120,36 +149,14 @@ const VideoComp: React.FC<IVideoCompProps> = ({
           !buttonVisible ? style.hidden : ""
         }`}
       >
-        <button>
-          <img
-            src="https://www.vigloo.com/assets/icons/menu/ic_like.svg"
-            alt="like"
-          />
-          <span style={{ marginLeft: "5px" }}>
-            {formatLikeCount(programData.likeCount)}
-          </span>
-        </button>
-        <button>
-          <img
-            src="https://www.vigloo.com/assets/icons/menu/ic_keep.svg"
-            alt="keep"
-          />
-          <span style={{ marginLeft: "5px" }}>찜</span>
-        </button>
-        <button>
-          <img
-            src="https://www.vigloo.com/assets/icons/menu/ic_list.svg"
-            alt="list"
-          />
-          <span style={{ marginLeft: "5px" }}>목록</span>
-        </button>
-        <button>
-          <img
-            src="https://www.vigloo.com/assets/icons/menu/ic_share.svg"
-            alt="share"
-          />
-          <span style={{ marginLeft: "5px" }}>공유</span>
-        </button>
+        {buttonData.map((button, index) => (
+          <button key={index}>
+            <img src={button.src} alt={button.alt} />
+            <span style={{ marginLeft: "5px" }}>
+              {button.text(formatLikeCount(programData.likeCount))}
+            </span>
+          </button>
+        ))}
       </div>
       <SeekBar
         isPlaying={isPlayingRef.current}

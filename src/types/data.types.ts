@@ -15,3 +15,11 @@ export interface ISlideData {
   id: number;
   videoContent: React.ReactNode;
 }
+
+export interface IAlertContent {
+  title?: React.ReactNode;
+  contents?: React.ReactNode;
+  button: React.ReactNode;
+}
+
+export type ALERT_MAP_TYPE = "appDownload" | "error";
