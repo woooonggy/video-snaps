@@ -53,12 +53,9 @@ export const fetchHlsUrlSelector = selectorFamily<
 
         if (data.payload && data.payload.url) {
           return data.payload.url;
-        } else {
-          console.error("Invalid HLS URL response:", data);
-          return null;
         }
+        return null;
       } catch (error) {
-        console.error("Failed to fetch HLS URL:", error);
         return null;
       }
     },
