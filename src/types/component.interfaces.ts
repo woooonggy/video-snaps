@@ -12,3 +12,9 @@ export interface ISwiperCompProps {
   slides: d.ISlideData[];
   onSlideChange?: (swiper: any) => void;
 }
+
+export interface IVideoPlayerProps {
+  programData: a.IProgram;
+  episodeNumber: number;
+  active: boolean;
+}
