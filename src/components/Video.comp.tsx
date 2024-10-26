@@ -32,6 +32,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
   programData,
   currentEpisode,
   active,
+  handleBottomSheet,
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -61,7 +62,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
     }
     hideButtonTimeout.current = setTimeout(() => {
       setButtonVisible(false);
-    }, 2000);
+    }, 3000);
   };
 
   const handleInputChange = (time: number) => {
@@ -78,7 +79,7 @@ const VideoComp: React.FC<IVideoCompProps> = ({
 
     hideButtonTimeout.current = setTimeout(() => {
       setButtonVisible(false);
-    }, 2000);
+    }, 3000);
 
     const handleTimeUpdate = () => {
       window.requestAnimationFrame(() => {
@@ -150,7 +151,10 @@ const VideoComp: React.FC<IVideoCompProps> = ({
         }`}
       >
         {buttonData.map((button, index) => (
-          <button key={index}>
+          <button
+            key={index}
+            onClick={button.alt === "list" ? handleBottomSheet : () => {}}
+          >
             <img src={button.src} alt={button.alt} />
             <span style={{ marginLeft: "5px" }}>
               {button.text(formatLikeCount(programData.likeCount))}

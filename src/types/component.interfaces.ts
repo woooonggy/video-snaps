@@ -6,6 +6,7 @@ export interface IVideoCompProps {
   programData: a.IProgram;
   currentEpisode: { total: number; current: number };
   active: boolean;
+  handleBottomSheet: () => void;
 }
 
 export interface ISwiperCompProps {
