@@ -1,5 +1,3 @@
-import { IAlertContent } from "../types/data.types";
-
 // License URIs
 export const LICENSE_URI = import.meta.env.VITE_URI_LICENSE;
 export const FAIRPLAY_CERT_URI = import.meta.env.VITE_URI_FAIRPLAY_CERT;
