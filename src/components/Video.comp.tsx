@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./Video.module.scss";
 import { IVideoCompProps } from "../types/component.interfaces";
 import SeekBar from "./SeekBar.comp";
-import { formatLikeCount } from "../common/util";
+import { formatLikeCount } from "../common/utils";
 
 const VideoComp: React.FC<IVideoCompProps> = ({
   videoRef,

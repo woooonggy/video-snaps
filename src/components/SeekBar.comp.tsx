@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./SeekBar.module.scss";
-import { formatTime } from "../common/util";
+import { formatTime } from "../common/utils";
 
 const SeekBar: React.FC<{
   isPlaying: boolean;
