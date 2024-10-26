@@ -1,7 +1,6 @@
 import { atom, selectorFamily } from "recoil";
 import { IPlayResponse } from "../types/api.types";
-
-const programId = 15000001;
+import { PROGRAM_ID } from "../common/constants";
 
 export const dashUriState = atom<string | null>({
   key: "dashUriState",
@@ -47,7 +46,7 @@ export const fetchHlsUrlSelector = selectorFamily<
     async () => {
       try {
         const response = await fetch(
-          `/api/play/HLS-${programId}-${episodeNumber}`
+          `/api/play/HLS-${PROGRAM_ID}-${episodeNumber}`
         );
         const data: IPlayResponse = await response.json();
 

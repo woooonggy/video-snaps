@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useRecoilValueLoadable } from "recoil";
 import { fetchDashUrlSelector, fetchHlsUrlSelector } from "../recoil/playState";
 import { IUseVideoPlayer } from "../types/data.types";
-
-const licenseUri = import.meta.env.VITE_URI_LICENSE;
-const fairplayCertUri = import.meta.env.VITE_URI_FAIRPLAY_CERT;
-
-const widevineToken = import.meta.env.VITE_TOKEN_WIDEVINE;
-const playreadyToken = import.meta.env.VITE_TOKEN_PLAYREADY;
-const fairplayToken = import.meta.env.VITE_TOKEN_FAIRPLAY;
+import {
+  FAIRPLAY_CERT_URI,
+  FAIRPLAY_TOKEN,
+  LICENSE_URI,
+  PLAYREADY_TOKEN,
+  WIDEVINE_TOKEN,
+} from "../common/constants";
 
 const useVideoPlayer = (episodeNumber: number): IUseVideoPlayer => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -107,21 +107,21 @@ const useVideoPlayer = (episodeNumber: number): IUseVideoPlayer => {
       if (drmType === "FairPlay") {
         const fairplayCert = await getFairplayCert();
         playerConfig.drm = {
-          servers: { "com.apple.fps": licenseUri },
+          servers: { "com.apple.fps": LICENSE_URI },
           advanced: { "com.apple.fps": { serverCertificate: fairplayCert } },
         };
-        configureDRMRequest(player, fairplayToken, "com.apple.fps.1_0");
+        configureDRMRequest(player, FAIRPLAY_TOKEN, "com.apple.fps.1_0");
       } else if (drmType === "Widevine") {
         playerConfig.drm = {
-          servers: { "com.widevine.alpha": licenseUri },
+          servers: { "com.widevine.alpha": LICENSE_URI },
           advanced: { "com.widevine.alpha": { persistentStateRequired: true } },
         };
-        configureDRMRequest(player, widevineToken, "com.widevine.alpha");
+        configureDRMRequest(player, WIDEVINE_TOKEN, "com.widevine.alpha");
       } else if (drmType === "PlayReady") {
         playerConfig.drm = {
-          servers: { "com.microsoft.playready": licenseUri },
+          servers: { "com.microsoft.playready": LICENSE_URI },
         };
-        configureDRMRequest(player, playreadyToken, "com.microsoft.playready");
+        configureDRMRequest(player, PLAYREADY_TOKEN, "com.microsoft.playready");
       }
 
       player.setTextTrackVisibility(true);
@@ -144,7 +144,7 @@ const useVideoPlayer = (episodeNumber: number): IUseVideoPlayer => {
 
   const getFairplayCert = async () => {
     try {
-      const response = await fetch(fairplayCertUri);
+      const response = await fetch(FAIRPLAY_CERT_URI);
       const base64Data = await response.text();
       return window.shaka.util.Uint8ArrayUtils.fromBase64(base64Data);
     } catch (error) {
