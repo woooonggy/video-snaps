@@ -2,7 +2,7 @@
 - TypeScript
 - React + Vite
 ---
-
+- [x] test
 
 ## 작업 내역
 #### 실행 방법
